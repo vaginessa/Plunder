@@ -136,7 +136,7 @@ public class DownloadPresenterImpl extends BaseFragmentPresenter<DownloadView>
           DownloadView view = getView();
 
           if (view != null) {
-            view.setProgress(client.getBufferProgress(), client.getDownloadSpeed());
+            view.setProgress(client.getBufferProgress(), client.getDownloadSpeed(), client.getSeeds());
           }
         });
   }

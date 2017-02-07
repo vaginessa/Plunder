@@ -7,5 +7,5 @@ import com.plunder.plunder.ui.common.FragmentView;
 public interface DownloadView extends FragmentView {
   void setBackgroundUri(@Nullable Uri uri);
 
-  void setProgress(int progress, float downloadSpeed);
+  void setProgress(int progress, float downloadSpeed, int seeds);
 }

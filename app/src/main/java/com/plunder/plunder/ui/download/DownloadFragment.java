@@ -214,22 +214,16 @@ public class DownloadFragment extends BaseFragment implements DownloadView {
         });
   }
 
-  @Override public void setProgress(int progress, float downloadSpeed) {
-    if (downloadProgressBar != null) {
-      if (downloadProgressBar.getProgress() == 0) {
-        downloadProgressBar.setIndeterminate(false);
-        downloadProgressBar.setMax(100);
-
-        downloadProgressLabel.setText(R.string.download_progress_buffering);
-      }
-
-      downloadProgressBar.setProgress(progress);
+  @Override
+  public void setProgress(int progress, float downloadSpeed, int seeds) {
+    if (downloadProgressBar.isIndeterminate()) {
+      downloadProgressBar.setIndeterminate(false);
+      downloadProgressBar.setMax(100);
     }
 
-    if (downloadProgressSmallLabel != null) {
-      downloadProgressSmallLabel.setText(
-          String.format(Locale.getDefault(), "%d%% - %s/sec", progress,
-              Formatter.formatFileSize(getActivity(), (long) downloadSpeed)));
-    }
+    downloadProgressBar.setProgress(progress);
+    downloadProgressLabel.setText(R.string.download_progress_buffering);
+
+    downloadProgressSmallLabel.setText(String.format(Locale.getDefault(), "%s/sec (%d seeds)", Formatter.formatFileSize(getActivity(), (long) downloadSpeed), seeds));
   }
 }
